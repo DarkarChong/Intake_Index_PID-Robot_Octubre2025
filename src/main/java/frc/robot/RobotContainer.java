@@ -53,8 +53,8 @@ public class RobotContainer {
             new RunIntakeIndexCommand(
                 intakeSubsystem,
                 indexSubsystem,
-                IntakeConstants.INTAKE_SPEED,   // Velocidad intake (positiva)
-                IndexConstants.INDEX_SPEED      // Velocidad index (positiva)
+                -0.7,   // Velocidad intake (positiva)
+                -0.6     // Velocidad index (positiva)
             )
         );
         
@@ -63,8 +63,8 @@ public class RobotContainer {
             new RunIntakeIndexCommand(
                 intakeSubsystem,
                 indexSubsystem,
-                -IntakeConstants.INTAKE_SPEED,  // Velocidad intake (negativa)
-                -IndexConstants.INDEX_SPEED     // Velocidad index (negativa)
+                0.7,  // Velocidad intake (negativa)
+                0.6    // Velocidad index (negativa)
             )
         );
         

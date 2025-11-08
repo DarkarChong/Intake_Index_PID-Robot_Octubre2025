@@ -7,13 +7,11 @@ public final class Constants {
         public static final int ANGULATOR_MOTOR_ID = 1;  // ID del Neo del angulador
         public static final int INTAKE_WHEELS_MOTOR_ID = 2;  // ID del Kraken
         
-        // Límites de velocidad
-        public static final double MANUAL_SPEED_LIMIT = 0.3;
         
         // Velocidades de las ruedas
         public static final double INTAKE_SPEED = 0.7;
         
-        // Configuración del PID ( calibrar estos valores)
+        // PID (falta calibrar estos valores)
         public static final double kP = 0.1;
         public static final double kI = 0.0;
         public static final double kD = 0.0;

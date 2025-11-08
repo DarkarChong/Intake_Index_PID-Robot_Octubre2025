@@ -7,6 +7,7 @@ import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 import com.revrobotics.spark.SparkBase.PersistMode;
 import com.revrobotics.spark.SparkBase.ResetMode;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.IndexConstants;
 
@@ -68,8 +69,8 @@ public class IndexSubsystem extends SubsystemBase {
     
     @Override
     public void periodic() {
-        // Aquí puedes agregar telemetría si necesitas
-        // SmartDashboard.putNumber("Left Index Speed", getLeftMotorSpeed());
-        // SmartDashboard.putNumber("Right Index Speed", getRightMotorSpeed());
+        // Se puede agregar Telemetría
+        SmartDashboard.putNumber("Left Index Speed", getLeftMotorSpeed());
+        SmartDashboard.putNumber("Right Index Speed", getRightMotorSpeed());
     }
 }

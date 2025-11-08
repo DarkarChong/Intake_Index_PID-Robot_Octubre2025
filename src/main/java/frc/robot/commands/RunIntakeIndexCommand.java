@@ -58,8 +58,7 @@ public class RunIntakeIndexCommand extends Command {
 
     @Override
     public boolean isFinished() {
-        // Este comando nunca termina por sí solo
-        // Solo termina cuando se suelta el botón (whileTrue)
+     
         return false;
     }
 }

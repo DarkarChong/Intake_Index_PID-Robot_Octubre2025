@@ -10,6 +10,7 @@ import com.revrobotics.spark.SparkBase.ControlType;
 import com.revrobotics.spark.SparkBase.PersistMode;
 import com.revrobotics.spark.SparkBase.ResetMode;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.IntakeConstants;
 
@@ -30,7 +31,7 @@ public class IntakeSubsystem extends SubsystemBase {
      * Aquí inicializamos y configuramos todos los motores
      */
     public IntakeSubsystem() {
-        // ===== CONFIGURACIÓN DEL MOTOR ANGULADOR (NEO con SparkMax) =====
+        // CONFIGURACIÓN DEL MOTOR ANGULADOR (NEO con SparkMax) 
         angulatorMotor = new SparkMax(IntakeConstants.ANGULATOR_MOTOR_ID, MotorType.kBrushless);
         
         // Crear objeto de configuración
@@ -40,7 +41,7 @@ public class IntakeSubsystem extends SubsystemBase {
         angulatorConfig.idleMode(IdleMode.kBrake);
         
         // Configurar el PID Controller del SparkMax
-        // Estos son los coeficientes que controlan cómo el motor alcanza la posición
+   
         angulatorConfig.closedLoop.pid(
             IntakeConstants.kP,  // P: Proporcional - qué tan agresivo corrige el error
             IntakeConstants.kI,  // I: Integral - corrige errores acumulados
@@ -65,18 +66,10 @@ public class IntakeSubsystem extends SubsystemBase {
      * speed Velocidad entre -0.3 y 0.3
      */
     public void setAngulatorManual(double speed) {
-        // Limitar la velocidad al máximo permitido
-        double limitedSpeed = Math.max(-IntakeConstants.MANUAL_SPEED_LIMIT, 
-                                      Math.min(IntakeConstants.MANUAL_SPEED_LIMIT, speed));
-        
-        angulatorMotor.set(limitedSpeed);
+        angulatorMotor.set(speed);
     }
     
-    /**
-     * Controla el angulador por PID a una posición específica
-     * Usa el PID Controller integrado del SparkMax
-     * @param targetPosition Posición objetivo en rotaciones
-     */
+ 
     public void setAngulatorPID(double targetPosition) {
         // Usar el ClosedLoopController del SparkMax
         // ControlType.kPosition significa que queremos ir a una posición específica
@@ -93,27 +86,17 @@ public class IntakeSubsystem extends SubsystemBase {
         angulatorMotor.set(0);
     }
     
-    /**
-     * Controla las ruedas del intake
-     * @param speed Velocidad entre -1.0 y 1.0
-     */
+    
     public void setIntakeWheels(double speed) {
         intakeWheelsMotor.set(speed);
     }
     
-    /**
-     * Obtiene la posición actual del angulador
-     * @return Posición en rotaciones
-     */
+  
     public double getAngulatorPosition() {
         return angulatorMotor.getEncoder().getPosition();
     }
     
-    /**
-     * Verifica si el angulador llegó a la posición objetivo
-     * @param targetPosition Posición que queremos alcanzar
-     * @return true si está dentro de la tolerancia
-     */
+  
     public boolean atTargetPosition(double targetPosition) {
         double currentPosition = getAngulatorPosition();
         return Math.abs(currentPosition - targetPosition) < IntakeConstants.POSITION_TOLERANCE;
@@ -125,14 +108,10 @@ public class IntakeSubsystem extends SubsystemBase {
     public void resetAngulatorEncoder() {
         angulatorMotor.getEncoder().setPosition(0);
     }
-    
-    /**
-     * Método periodic - se ejecuta cada 20ms automáticamente
-     * Útil para mostrar datos en el dashboard
-     */
+ 
     @Override
     public void periodic() {
-        // Aquí puedes agregar telemetría si necesitas
-        // SmartDashboard.putNumber("Angulator Position", getAngulatorPosition());
+        // Aquí se puede agregar teelemetría
+       SmartDashboard.putNumber("Angulator Position", getAngulatorPosition());
     }
 }
